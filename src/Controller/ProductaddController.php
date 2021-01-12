@@ -29,7 +29,7 @@ class ProductaddController extends AbstractController
             $em->persist($productadd);
             $em->flush();
 
-            //return $this->redirectToRoute( route:'home');
+            return $this->redirectToRoute('productlist');
 
         }
         return $this->render('productadd/index.html.twig', [

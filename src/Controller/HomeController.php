@@ -23,21 +23,7 @@ class HomeController extends AbstractController
         
     }
 
-      /**
-     * @Route("/imhome/{id}", name="imhome")
-     */
-    public function index0(int $id): Response
-    {
-
-        $pro=$this->getDoctrine()->getRepository(Productadd::class)->find($id);
-
-        return $this->render('home/home.html.twig', [
-            'controller_name' => 'HomeController',
-            'product' => $pro]);
-        
-    }
-
-     /**
+    /**
      * @Route("/about", name="about")
      */
     public function index1(): Response
@@ -52,9 +38,11 @@ class HomeController extends AbstractController
      */
     public function index2(): Response
     {
+
+        $product=$this->getDoctrine()->getRepository(Productadd::class)->findAll();
         return $this->render('home/shop.html.twig', [
             'controller_name' => 'HomeController',
-        ]);
+            'product' => $product]);
     }
 
 
@@ -80,18 +68,19 @@ class HomeController extends AbstractController
 
 
      /**
-     * @Route("/shop-single", name="shop-single")
+     * @Route("/shop-single/{id}", name="shop-single")
      * 
-     * @return Response
+     * 
      */
-    public function index6(Productadd $id)
+    public function index6($id)
     {
 
-        $product=$this->getDoctrine()->getRepository(Productadd::class)->findAll();
-
+        $rep=$this->getDoctrine()->getRepository(Productadd::class);
+        $product = $rep->find($id);
         return $this->render('home/shop-single.html.twig', [
             'controller_name' => 'HomeController',
-            'product' => $product]);
+            'product' => $product,
+        ]);
         
     }
 
@@ -99,9 +88,21 @@ class HomeController extends AbstractController
 
 
 
-    
-    
-    
+     /**
+     * @Route("shop-single", name="shopsingle")
+     * 
+     * @return Response
+     */
+    public function index77()
+    {
+            return $this->render('home/shop-single.html.twig', [
+            'controller_name' => 'HomeController',
+            
+        ]);
+        
+    }
+
+ 
     /**
      * @Route("/thankyou", name="thankyou")
      */
@@ -109,6 +110,18 @@ class HomeController extends AbstractController
     {
         return $this->render('home/thankyou.html.twig', [
             'controller_name' => 'HomeController',
+        ]);
+    }
+
+    /**
+     * @Route("/shopdet", name="shopdet")
+     */
+    public function index8(): Response
+    {
+        
+        return $this->render('home/shopdet.html.twig', [
+            'controller_name' => 'HomeController',
+            
         ]);
     }
 

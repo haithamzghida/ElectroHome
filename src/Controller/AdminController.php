@@ -47,7 +47,7 @@ class AdminController extends AbstractController
         $em->remove($contact);
         $em->flush();
 
-        return new Response('message deleted');
+        return $this->redirectToRoute('Contactlist');
     }
 
      /**
@@ -74,7 +74,7 @@ class AdminController extends AbstractController
         $em->remove($product);
         $em->flush();
 
-        return new Response('message deleted');
+        return $this->redirectToRoute('productlist');
     }
 
         
